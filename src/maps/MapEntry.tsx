@@ -1,21 +1,14 @@
 import React from 'react';
-import Difficulties from '../utils/difficulties';
+// import Difficulties from '../utils/difficulties';
+import MapProp from './MapPropInterface'
 
-interface MapProp {
-    id: number;
-    name: string;
-    stars: number;
-    difficulty: string;
-}
-
-export default class MapEntry extends React.Component<{ mappu: MapProp }, MapProp> {
+export default class MapEntry extends React.Component<{ className: string, map: MapProp }, MapProp> {
     render() {
         return (
-            <div>
-                <p>ID: {this.props.mappu.id}</p>
-                <p>Name: {this.props.mappu.name}</p>
-                <p>Stars: {this.props.mappu.stars}</p>
-                <p>Difficulty: {this.props.mappu.difficulty}</p>
+            <div className={`${this.props.className} status-${this.props.map.completed} `}>
+                <h3>{this.props.map.title}</h3>
+                <p>userId: {this.props.map.userId}</p>
+                <p>ID: {this.props.map.id}</p>
             </div>
         );
     }
