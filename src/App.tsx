@@ -5,6 +5,9 @@ import './App.css';
 const App: React.FC = () => {
     return (
         <>
+            <header>
+                <h1>super-duper-pancake</h1>
+            </header>
             <MapLoop />
         </>
     );

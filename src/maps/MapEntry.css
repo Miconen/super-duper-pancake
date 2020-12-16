@@ -1,9 +1,19 @@
 .MapEntry {
     margin-bottom: 50px;
-    background-color: white;
+    background-color: rgb(30, 30, 30);
     box-shadow: black;
+    color: white;
 }
 
 .status-true {
-    box-shadow: 0px 0px 20px rgb(218, 255, 218);
+    box-shadow: 0px 0px 5px rgb(218, 255, 218);
+}
+
+.EntryTopBar {
+    background-color: #ffffff;
+    height: 20px;
+}
+
+.EntryContent {
+    padding: 10px;
 }

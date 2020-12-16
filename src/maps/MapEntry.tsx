@@ -2,14 +2,22 @@ import React from 'react';
 // import Difficulties from '../utils/difficulties';
 import MapProp from './MapPropInterface'
 
-export default class MapEntry extends React.Component<{ className: string, map: MapProp }, MapProp> {
-    render() {
-        return (
-            <div className={`${this.props.className} status-${this.props.map.completed} `}>
-                <h3>{this.props.map.title}</h3>
-                <p>userId: {this.props.map.userId}</p>
-                <p>ID: {this.props.map.id}</p>
-            </div>
-        );
-    }
+interface Props {
+    className: string;
+    map: MapProp;
 }
+
+const MapEntry: React.FC<Props> = ({ className, map }) => {
+    return (
+        <div key={map.id} className={`${className} status-${map.completed}`}>
+            <div className='EntryTopBar'></div>
+            <div className='EntryContent'>
+                <h3>{map.title}</h3>
+                <p>userId: {map.userId}</p>
+                <p>ID: {map.id}</p>
+            </div>
+        </div>
+    );
+};
+
+export default MapEntry;

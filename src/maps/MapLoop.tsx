@@ -1,42 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './MapEntry.css';
 import MapEntry from './MapEntry';
 // import Difficulties from '../utils/difficulties';
 import MapProp from './MapPropInterface'
 
-export default class MapLoop extends React.Component {
-    state = {
+const MapLoop: React.FC = () => {
+
+    const [state, setState] = useState({
         maps: [],
         loading: true,
         error: false
-    }
+    });
 
-    render() {
-        // return <MapEntry mappu={this.mappus[0]} />;
-        const { maps, loading, error } = this.state;
-
-        return (
-            <div className='MapContainer'>
-                {loading && <div>Loading...</div>}
-                {!loading && !error &&
-                    maps.map(function (map: MapProp) {
-                        return (<MapEntry className="MapEntry" key={map.id} map={map} />)
-                    })
-                }
-                {error && <div>Error message</div>}
-            </div>
-        );
-    }
-    componentDidMount() {
+    useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/todos/')
             .then(response => response.json())
-            .then(response => this.setState({
+            .then(response => setState({
                 maps: response,
-                loading: false
+                loading: false,
+                error: false
             }))
-            .catch(error => this.setState({
+            .then(response => console.log('request'))
+            .catch(error => setState({
+                maps: [],
                 loading: false,
                 error: true
             }));
-    }
-}
+    }, [])
+
+
+    return (
+        <div className='MapContainer' >
+            { state.loading && <div>Loading...</div>}
+            {!state.loading && !state.error &&
+                state.maps.map(function (map: MapProp) {
+                    return (<MapEntry className="MapEntry" map={map} />)
+                })
+            }
+            { state.error && <div>Error</div> && console.log(state.error)};
+        </div >
+    );
+};
+
+export default MapLoop;
