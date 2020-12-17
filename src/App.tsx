@@ -5,10 +5,15 @@ import './App.css';
 const App: React.FC = () => {
     return (
         <>
-            <header>
-                <h1>super-duper-pancake</h1>
+            <header className="text-white bg-indigo-600 h-96 flex">
+                <div className="m-auto">
+                    <h1 className="text-4xl header-title">Super Duper Pancake</h1>
+                </div>
             </header>
-            <MapLoop />
+            <div id="header-wave"></div>
+            <main>
+                <MapLoop />
+            </main >
         </>
     );
 };

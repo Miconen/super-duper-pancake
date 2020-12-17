@@ -13,7 +13,12 @@ const MapLoop: React.FC = () => {
     });
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/todos/')
+        let apiKey: string = '';
+        let map: number = 0;
+        // TODO CORS Error
+        fetch(`https://osu.ppy.sh/p/api/get_beatmaps?k=${apiKey}&b=${map}`, {
+            method: 'GET'
+        })
             .then(response => response.json())
             .then(response => setState({
                 maps: response,
@@ -30,14 +35,14 @@ const MapLoop: React.FC = () => {
 
 
     return (
-        <div className='MapContainer' >
-            { state.loading && <div>Loading...</div>}
+        <div className="flex flex-wrap">
+            {state.loading && <div>Loading...</div>}
             {!state.loading && !state.error &&
                 state.maps.map(function (map: MapProp) {
-                    return (<MapEntry className="MapEntry" map={map} />)
+                    return (<MapEntry className="MapEntry" key={map.id} map={map} />)
                 })
             }
-            { state.error && <div>Error</div> && console.log(state.error)};
+            {state.error && <div>Error</div> && console.log(state.error)};
         </div >
     );
 };

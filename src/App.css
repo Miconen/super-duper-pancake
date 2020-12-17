@@ -1,25 +1,22 @@
-hmtl, body, #root {
-    margin: 0;
-    padding: 0;
-    background-color: rgb(10, 10, 10);
+#header-wave {
+    overflow: hidden;
+    height: 200px;
+    position: relative;
 }
 
-.MapContainer {
-    width: 80%;
-    margin: 0 auto;
+#header-wave::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 100% 100%;
+    width: 200%;
+    height: 400px;
+    background-color: rgb(79, 70, 229);
+    top: -300px;
+    left: -50%;
 }
 
-header {
-    background-color: rgb(30, 30, 30);
-    padding: 10px;
-    color: white;
-}
-
-header h1 {
-    font-size: 16px;
-}
-
-header h1::before {
-    content: '@ ';
-    color: rgb(150, 150, 150);
+.header-title {
+    position: relative;
+    top: 30px;
 }
